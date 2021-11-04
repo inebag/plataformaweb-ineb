@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="static/css/style.css"
+	th:href="@{/css/style.css}">
+
+</head>
+
+<style>
+body {
+	background: #e5e5e5;
+}
+</style>
+<style type="text/css">
+.boton_personalizado {
+	text-decoration: none;
+	padding: 10px;
+	font-weight: 600;
+	font-size: 20px;
+	color: white;
+	background-color: white;
+	border-radius: 6px;
+	border: 2px solid #0016b0;
+}
+</style>
+
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+
+	<section class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="text-black text-center my-5">Administración</h1>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-3">
+				<div
+					class="shadow
+				d-flex
+				justify-conent-center
+				align-items-center p-3 bg-dark rounded-lg
+				flex-column
+					">
+					<div class="estudiantes-img">
+						<img class="img-fluid rounded-circle" src="img/estudiantes.png" alt="Estudiante">
+					</div>
+					<div class="estudiante-name my-3">
+						<h3 class="text-white text-center">Administración de
+							Estudiantes</h3>
+					</div>
+					<button role="link" onclick="window.location='/listar-estudiantes'"
+						class="btn btn-secundary btn-lg btn-block">Estudiantes</button>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="col-lg-3 col-md-4 col-sm-3">
+				<div
+					class="shadow
+				d-flex
+				justify-conent-center
+				align-items-center p-3 bg-dark rounded-lg
+				flex-column
+					">
+					<div class="docentes-img">
+						<img class="img-fluid rounded-circle" src="img/docente.png" alt="Docente">
+					</div>
+					<div class="docente-name my-3">
+						<h3 class="text-white text-center">Administración de Docentes</h3>
+					</div>
+					<button role="link" onclick="window.location='/listar-docentes'"
+						class="btn btn-secundary btn-lg btn-block">Docentes</button>
+				</div>
+			</div>
+
+
+
+			<div class="col-lg-3 col-md-4 col-sm-3">
+				<div
+					class="shadow
+				d-flex
+				justify-conent-center
+				align-items-center p-3 bg-dark rounded-lg
+				flex-column
+					">
+					<div class="cursos-img">
+						<img class="img-fluid rounded-circle" src="img/cursos.png" alt="Curso">
+					</div>
+					<div class="curso-name my-3">
+						<h3 class="text-white text-center">Administración de Cursos</h3>
+					</div>
+					<button role="link" onclick="window.location='/listar-cursos'"
+						class="btn btn-secundary btn-lg btn-block">Cursos</button>
+				</div>
+			</div>
+
+
+			<div class="col-lg-3 col-md-4 col-sm-3">
+				<div
+					class="shadow
+				d-flex
+				justify-conent-center
+				align-items-center p-3 bg-dark rounded-lg
+				flex-column
+					">
+					<div class="asignaciones-img">
+						<img class="img-fluid rounded-circle" src="img/asignacion.png" alt="Asignacion">
+					</div>
+					<div class="asignacion-name my-3">
+						<h3 class="text-white text-center">Asignación de Grado</h3>
+					</div>
+					<button role="link"
+						onclick="window.location='/listar-asignaciones-grados-estudiantes'"
+						class="btn btn-secundary btn-lg btn-block">Asignación</button>
+				</div>
+			</div>
+
+
+
+
+
+
+		</div>
+
+	</section>
+
+<section class="container">
+		<div class="row">
+			<div class="col-md-12">
+			</div>
+			
+
+			<div class="col-lg-3 col-md-4 col-sm-4">
+				<div
+					class="shadow
+				d-flex
+				justify-conent-center
+				align-items-center p-3 bg-dark rounded-lg
+				flex-column
+					">
+					<div class="grupos-img">
+						<img class="img-fluid rounded-circle" src="img/grupo.png" alt="Estudiantes">
+					</div>
+					<div class="estudiante-name my-3">
+						<h3 class="text-white text-center">Asignación de Grupo</h3>
+					</div>
+
+
+					<button role="link" onclick="window.location='/listar-grupos'"
+						class="btn btn-secundary btn-lg btn-block">Grupo</button>
+
+				</div>
+			</div>
+
+			<div class="col-lg-3 col-md-4 col-sm-4">
+				<div
+					class="shadow
+				d-flex
+				justify-conent-center
+				align-items-center p-3 bg-dark rounded-lg
+				flex-column
+					">
+					<div class="grupos-img">
+						<img class="img-fluid rounded-circle" src="img/usuarios.png" alt="Usuarios">
+					</div>
+					<div class="estudiante-name my-3">
+						<h3 class="text-white text-center">Administración de Usuarios</h3>
+					</div>
+
+
+					<button role="link" onclick="window.location='/userForm'"
+						class="btn btn-secundary btn-lg btn-block">Usuarios</button>
+
+				</div>
+			</div>
+
+
+
+		</div>
+
+	</section>
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

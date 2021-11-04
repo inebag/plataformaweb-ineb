@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+		
+	<div class="row d-flex justify-content-center">
+	<div class="container mt-4 row d-flex justify-content-center">
+	
+	<div class="col-sm-20 ">
+	
+		
+		<div class="card">
+		
+		<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+		
+				<h4 class="card-tittle">
+				<a th:href="@{/nueva-asignacion-grado}" class="btn btn-outline-primary btn-xs">NUEVA ASIGNACION</a>
+				<a th:href="@{/listar-grados}" class="btn btn-outline-primary btn-xs">GRADOS</a>
+				<a th:href="@{/listar-estudiantes}" class="btn btn-outline-primary btn-xs">ESTUDIANTES</a>
+	
+
+
+				</h4>
+				
+				<div class="table-responsive">
+				<div class="row d-flex justify-content-center">
+				<table class="table table-bordered table-hover table-striped" th:if="${!asignacionGrados.isEmpty()}">
+					<thead class="bg-dark text-white">
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">ESTUDIANTE</th>
+							<th scope="col">GRADO</th>																
+							<th scope="col">EDITAR</th>
+							<th scope="col">ELIMINAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="asigGrado: ${asignacionGrados}" >																
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/detalle-asignacion-grado-estudiante/} + ${asigGrado.idAsignacionGradoE}" th:text="${asigGrado.idAsignacionGradoE}"></a></td> 											
+					
+							<td th:text="${asigGrado.estudiante.nombresEstudiante+' '+asigGrado.estudiante.apellidosEstudiante}"></td>
+							<td th:text="${asigGrado.grado.ngrado+' '+asigGrado.grado.seccion.nseccion}"></td>
+							
+							<td class="text-center"><a class="btn btn-outline-warning btn-xs"
+								th:href="@{/editar-asignacion-grado-estudiante/} + ${asigGrado.idAsignacionGradoE}">EDITAR</a></td>
+							<td class="text-center"><a class="btn btn-outline-danger btn-xs"
+								th:href="@{/eliminar-asignacion-grado/} + ${asigGrado.idAsignacionGradoE}"
+								onclick="return confirm('Desea eliminar el Asignación de Grado?');">ELIMINAR</a></td>
+						</tr>  
+					</tbody>
+				</table>
+																						
+											<div class="container mt-4 row d-flex justify-content-center">
+				<nav th:replace="paginator-nav :: paginator"></nav>
+				</div>
+				</div>
+		</div>			
+	</div>
+			</div>
+		</div>
+		</div>
+	
+</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

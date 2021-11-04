@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<h4 class="card-tittle">
+				<a th:href="@{/nuevo-grado}" class="btn btn-outline-primary btn-xs">AGREGAR CURSO</a>
+		
+				</h4>
+				
+				<div class="table-responsive">
+				<div class="row d-flex justify-content-center">
+				<table class="table table-striped " th:if="${!grados.isEmpty()}">
+				
+					<thead class="bg-dark text-white">
+						<tr>
+
+							<th scope="col">#</th>
+							<th scope="col">GRADO</th>
+							<th scope="col">SECCIÓN</th>
+							<th scope="col">EDITAR</th>
+							<th scope="col">ELIMINAR</th>							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="grado: ${grados}" th:style="${grado.ngrado.isEmpty()} ? 'background-color: red'">
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/detalle-grado/} + ${grado.idGrado}" th:text="${grado.idGrado}"></a></td> 											
+							<td th:text="${grado.ngrado}"></td>
+							<td th:text="${grado.seccion.nseccion}"></td>
+							
+							
+
+							<td class="text-center"><a class="btn btn-outline-warning btn-xs"
+								th:href="@{/editar-grado/} + ${grado.idGrado}">EDITAR</a></td>
+							<td class="text-center"><a class="btn btn-outline-danger btn-xs"
+								th:href="@{/eliminar-grado/} + ${grado.idGrado}"
+								onclick="return confirm('Desea eliminar el Grado?');">ELIMINAR</a></td>
+						</tr>
+					</tbody>
+				</table>
+				
+								<div class="container mt-4 row d-flex justify-content-center">
+				<nav th:replace="paginator-nav :: paginator"></nav>
+				</div>
+			<div class="container py-4">
+				<h5>REPORTE DE ESTUDIANTES PRIMERO BÁSICO</h5>
+				<h5>PDF</h5>
+		<a  class="btn btn-outline-danger btn-xs" target="_blank" th:href="@{/report/estudiantes-primero-a/download/(tipo=PDF)}">PRIMERO A</a>
+		<a  class="btn btn-outline-danger btn-xs" target="_blank" th:href="@{/report/estudiantes-primero-b/download/(tipo=PDF)}">PRIMERO B</a>
+		<a  class="btn btn-outline-danger btn-xs" target="_blank" th:href="@{/report/estudiantes-primero-c/download/(tipo=PDF)}">PRIMERO C</a>
+		<a  class="btn btn-outline-danger btn-xs" target="_blank" th:href="@{/report/estudiantes-primero-d/download/(tipo=PDF)}">PRIMERO D</a>
+		<h5>EXCEL</h5>
+		<a  class="btn btn-outline-success btn-xs" target="_blank" th:href="@{/report/estudiantes-primero-a/download/(tipo=EXCEL)}">PRIMERO A</a>
+		<a  class="btn btn-outline-success btn-xs" target="_blank" th:href="@{/report/estudiantes-primero-b/download/(tipo=EXCEL)}">PRIMERO B</a>
+		<a  class="btn btn-outline-success btn-xs" target="_blank" th:href="@{/report/estudiantes-primero-c/download/(tipo=EXCEL)}">PRIMERO C</a>
+		<a  class="btn btn-outline-success btn-xs" target="_blank" th:href="@{/report/estudiantes-primero-d/download/(tipo=EXCEL)}">PRIMERO D</a>
+</div>
+
+<div class="container py-4">
+<h5>REPORTE DE ESTUDIANTES SEGUNDO BÁSICO</h5>
+<h5>PDF</h5>
+		<a  class="btn btn-outline-danger btn-xs" target="_blank" th:href="@{/report/estudiantes-segundo-a/download/(tipo=PDF)}">SEGUNDO A</a>
+		<a  class="btn btn-outline-danger btn-xs" target="_blank" th:href="@{/report/estudiantes-segundo-b/download/(tipo=PDF)}">SEGUNDO B</a>
+		<a  class="btn btn-outline-danger btn-xs" target="_blank" th:href="@{/report/estudiantes-segundo-c/download/(tipo=PDF)}">SEGUNDO C</a>
+<h5>EXCEL</h5>
+<a  class="btn btn-outline-success btn-xs" target="_blank" th:href="@{/report/estudiantes-segundo-a/download/(tipo=EXCEL)}">SEGUNDO A</a>
+		<a  class="btn btn-outline-success btn-xs" target="_blank" th:href="@{/report/estudiantes-segundo-b/download/(tipo=EXCEL)}">SEGUNDO B</a>
+		<a  class="btn btn-outline-success btn-xs" target="_blank" th:href="@{/report/estudiantes-segundo-c/download/(tipo=EXCEL)}">SEGUNDO C</a>
+</div>
+
+<div class="container py-4">
+<h5>REPORTE DE ESTUDIANTES TERCERO BÁSICO</h5>
+<h5>PDF</h5>
+		<a  class="btn btn-outline-danger btn-xs" target="_blank" th:href="@{/report/estudiantes-tercero-a/download/(tipo=PDF)}">TERCERO A</a>
+		<a  class="btn btn-outline-danger btn-xs" target="_blank" th:href="@{/report/estudiantes-tercero-b/download/(tipo=PDF)}">TERCERO B</a>
+		<a  class="btn btn-outline-danger btn-xs" target="_blank" th:href="@{/report/estudiantes-tercero-c/download/(tipo=PDF)}">TERCERO C</a>
+<h5>EXCEL</h5>
+		<a  class="btn btn-outline-success btn-xs" target="_blank" th:href="@{/report/estudiantes-tercero-a/download/(tipo=EXCEL)}">TERCERO A</a>
+		<a  class="btn btn-outline-success btn-xs" target="_blank" th:href="@{/report/estudiantes-tercero-b/download/(tipo=EXCEL)}">TERCERO B</a>
+		<a  class="btn btn-outline-success btn-xs" target="_blank" th:href="@{/report/estudiantes-tercero-c/download/(tipo=EXCEL)}">TERCERO C</a>
+</div>
+
+			</div>
+		</div>	
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="row d-flex justify-content-center">
+	<div class="container mt-4 row d-flex justify-content-center">
+	
+	<div class="col-sm-6 ">
+	
+				<form th:action="@{/nueva-nota}" th:object="${nota}"
+					method="post" enctype="multipart/form-data">								
+					<div class="card">
+						<div class="card-header">
+						<h3
+							class="text-secundary"
+							th:text="${titulo}"></h3>
+						</div>
+					<div class="card-body">	
+<!-- 
+						<div class="form-group"><label>ESTUDIANTE</label>
+							<select th:field="*{docente}" class="form-control form-control-sm col-md-15" >
+								<option th:each="docente:${docentes}"
+									th:value="${docente.idDocente}"
+									th:text="${docente.nombresDocente+' '+docente.apellidosDocente}"
+									class="form-control"								
+								/>
+							</select>
+						</div>
+
+						<div class="form-group"><label>CURSO</label>
+							<select th:field="*{curso}" class="form-control form-control-sm col-md-15" >
+								<option th:each="curso:${cursos}"
+									th:value="${curso.idCurso}"
+									th:text="${curso.nombreCurso}"
+									class="form-control"								
+								/>
+							</select>
+						</div>							
+-->		
+
+					<div class="card-body">					
+						<div class="form-group"><label>ESTUDIANTE</label>
+							<input type="text" th:field="*{idEstudiante}" class="form-control" />
+						</div>
+					</div >
+										<div class="card-body">					
+						<div class="form-group"><label>CURSO</label>
+							<input type="text" th:field="*{idCurso}" class="form-control" />
+						</div>
+					</div >
+					<div class="card-body">					
+						<div class="form-group"><label>NOTA</label>
+						
+						<input type="number" id="tentacles" class="form-control" th:field="*{nota}" name="tentacles"
+      														 min="1" max="100"/>
+							
+						</div>
+					</div >
+					
+				<div class="card-body">					
+						<div class="form-group"><label>OBSERVACION</label>	
+						<textarea th:field="*{observacion}" class="form-control"></textarea>	
+						</div>
+					</div >
+					
+												
+					</div >
+					
+					<input type="hidden" th:field="*{id}" />
+					
+					<div class="form-group text-center">
+					<div class="col-sm-6">
+					<input type="submit" value="GUARDAR" class="btn btn-info " />
+					
+					<a th:href="@{/listar-notas}" class="btn btn-warning">CANCELAR</a>
+					</div>
+					</div>
+
+
+				</div>
+				</form>
+
+			</div>
+		</div>
+	
+</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

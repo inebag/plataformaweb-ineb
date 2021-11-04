@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<h4 class="card-tittle">
+				<a th:href="@{/nuevo-tipo-estudiante}" class="btn btn-outline-primary btn-xs">AGREGAR TIPO ESTUDIANTE</a>
+
+
+				</h4>
+				
+				<table class="table table-striped " th:if="${!tiposEstudiantes.isEmpty()}">
+					<thead class="bg-dark text-white">
+						<tr>
+							<td>ID</td>
+							<td>TIPO ESTUDIANTE</td>
+							<td >EDITAR</td>
+							<td >ELIMINAR</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="tipoEstudiante: ${tiposEstudiantes}" th:style="${tipoEstudiante.ntipoEstudiante.isEmpty()} ? 'background-color: red'">
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/detalle-genero/} + ${tipoEstudiante.idTipoEstudiante}" th:text="${tipoEstudiante.idTipoEstudiante}"></a></td> 											
+							<td th:text="${tipoEstudiante.ntipoEstudiante}"></td>
+
+
+							<td class="text-center"><a class="btn btn-outline-warning btn-xs"
+								th:href="@{/editar-tipo-estudiante/} + ${tipoEstudiante.idTipoEstudiante}">EDITAR</a></td>
+							<td class="text-center"><a class="btn btn-outline-danger btn-xs"
+								th:href="@{/eliminar-tipo-estudiante/} + ${tipoEstudiante.idTipoEstudiante}"
+								onclick="return confirm('Desea eliminar el Tipo Estudiante?');">ELIMINAR</a></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="container mt-4 row d-flex justify-content-center">
+				<nav th:replace="paginator-nav :: paginator"></nav>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

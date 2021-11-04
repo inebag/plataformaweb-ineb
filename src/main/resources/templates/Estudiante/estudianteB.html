@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+
+	<div class="container mt-5">
+	<div class="row d-flex justify-content-center">
+	<div class="col-sm-20">
+	
+	<div class="card">
+	<div class="card-header">
+		<h4 class="text-center mb-4">BUSCAR ESTUDIANTE</h4>
+	</div>
+	<div class="card-body">	
+		<form th:action="@{/nombresEstudiante}" th:object="${estudiante}" method="get" >
+			  <input type="text" th:field="*{nombresEstudiante}" class="form-control col-md-" required placeholder="Ingresar el NOMBRE del Estudiante"  />
+			
+			
+			  <button type="submit" class="btn btn-info mt-4 mb-4">BUSCAR</button>
+			  <a th:href="@{/listar-estudiantes}" class="btn btn-warning">REGRESAR</a>
+			  
+		
+			  
+	    </form>
+				<div class="row d-flex justify-content-center">
+				<table class="table">
+					<thead class="bg-dark text-white">
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">NOMBRE ESTUDIANTE</th>
+							<th scope="col">APELLIDO ESTUDIANTE</th>
+							<th scope="col">FECHA NACIMIENTO</th>
+							<th scope="col">GENERO</th>
+							<th scope="col">TELEFONO</th>
+							<th scope="col">DIRECCION</th>
+							<th scope="col">TIPO ESTUDIANTE</th>
+							<th scope="col">NOMBRE ENCARGADO</th>
+							<th scope="col">APELLIDO ENCARGADO</th>
+							<th scope="col">DPI ENCARGADO</th>
+							<th scope="col">TELEFONO ENCARGADO</th>																	
+							<th scope="col">EDITAR</th>
+							<th scope="col">ELIMINAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="estudiante: ${buscarEstudianteN}">
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/detalle-estudiante/} + ${estudiante.idEstudiante}" th:text="${estudiante.idEstudiante}"></a></td> 											
+							<td th:text="${estudiante.nombresEstudiante}"></td>
+							<td th:text="${estudiante.apellidosEstudiante}"></td>
+							<td th:text="${estudiante.fechaNacimiento}"></td>
+							<td th:text="${estudiante.genero.nombreGenero}"></td>					
+							<td th:text="${estudiante.telefono}"></td>
+							<td th:text="${estudiante.direccion}"></td>
+							<td th:text="${estudiante.tipoEstudiante.ntipoEstudiante}"></td>
+							<td th:text="${estudiante.nombresEncargado}"></td>
+							<td th:text="${estudiante.apellidosEncargado}"></td>
+							<td th:text="${estudiante.dpiEncargado}"></td>
+							<td th:text="${estudiante.telefonoEncargado}"></td>
+							
+							
+							<td class="text-center"><a class="btn btn-outline-info btn-xs"
+								th:href="@{/editar-estudiante/} + ${estudiante.idEstudiante}">EDITAR</a></td>
+							<td class="text-center"><a class="btn btn-outline-danger btn-xs"
+								th:href="@{/eliminar-estudiante/} + ${estudiante.idEstudiante}"
+								onclick="return confirm('Desea eliminar el Estudiante?');">ELIMINAR</a></td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</div>																			
+				</div>
+				</div>
+					
+	</div>
+			</div>
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

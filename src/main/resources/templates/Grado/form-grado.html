@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="row d-flex justify-content-center">
+	<div class="container mt-4 row d-flex justify-content-center">
+	
+	<div class="col-sm-6 ">
+	
+				<form th:action="@{/nuevo-grado}" th:object="${grado}"
+					method="post" enctype="multipart/form-data">								
+					<div class="card">
+						<div class="card-header">
+						<h3
+							class="text-secundary"
+							th:text="${titulo}"></h3>
+						</div>
+					<div class="card-body">					
+						<div class="form-group"><label>GRADO</label>
+							<input type="text" th:field="*{ngrado}" class="form-control"
+								 />
+						</div>
+						
+						<div class="form-group"><label>SECION</label>
+						<select th:field="*{seccion}" class="form-control form-control-sm col-md-15" >
+								<option th:each="seccion:${secciones}"
+									th:value="${seccion.idSeccion}"
+									th:text="${seccion.nseccion}"
+									class="form-control"								
+								/>
+							</select>
+						</div>
+
+					
+						
+						
+					</div >
+					
+					<input type="hidden" th:field="*{idGrado}" />
+					
+					<div class="form-group">
+					<div class="col-sm-6">
+					<input type="submit" value="GUARDAR" class="btn btn-info" />
+					<a th:href="@{/listar-cursos}" class="btn btn-warning">CANCELAR</a>
+					
+					</div>
+					</div>
+
+</div>
+				
+				</form>
+
+			</div>
+		</div>
+	
+</div>
+
+</body>
+</html>

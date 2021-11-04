@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+
+	<div class="container mt-5">
+	<div class="row d-flex justify-content-center">
+	<div class="col-sm-20">
+	
+		<div class="card">
+	<div class="card-header">
+	<h4 class="text-center mb-4">BUSCAR DOCENTE</h4>
+	</div>
+	<div class="card-body">	
+		<form th:action="@{/dpiDocente}" th:object="${docente}" method="get" >
+			  <input type="text" th:field="*{dpiDocente}" class="form-control col-md-" required placeholder="Ingresar el DPI del Docente"  />
+			
+			
+			  <button type="submit" class="btn btn-info mt-4 mb-4">BUSCAR</button>
+			  <a th:href="@{/listar-docentes}" class="btn btn-warning">REGRESAR</a>
+			  
+		
+			  
+	    </form>
+				<div class="row d-flex justify-content-center">
+				<table class="table table-bordered table-hover table-striped">
+					<thead class="bg-dark text-white">
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">DPI</th>
+							<th scope="col">NOMBRE</th>
+							<th scope="col">APELLIDO</th>
+							<th scope="col">APELLIDO CASADA</th>
+							<th scope="col">FECHA NACIMIENTO</th>
+							<th scope="col">DIRECCION</th>
+							<th scope="col">ESTADO CIVIL</th>
+							<th scope="col">GENERO</th>
+							<th scope="col">TELEFONO</th>
+							<th scope="col">NIT</th>
+							<th scope="col">EMAIL</th>
+							<th scope="col">AFILIACION IGSS</th>																							
+							<th scope="col">EDITAR</th>
+							<th scope="col">ELIMINAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="docente: ${buscarDocentedpi}" >
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/detalle-docente/} + ${docente.idDocente}" th:text="${docente.idDocente}"></a></td> 											
+							<td th:text="${docente.dpiDocente}"></td>
+							<td th:text="${docente.nombresDocente}"></td>
+							<td th:text="${docente.apellidosDocente}"></td>
+							<td th:text="${docente.apellidoCasadaDocente}"></td>
+							<td th:text="${docente.fechaNacimiento}"></td>
+							<td th:text="${docente.direccionDocente}"></td>
+							<td th:text="${docente.estadoCivil}"></td>														
+							<td th:text="${docente.genero.nombreGenero}"></td>					
+							<td th:text="${docente.telefonoDocente}"></td>
+							<td th:text="${docente.nitDocente}"></td>
+							<td th:text="${docente.email}"></td>
+							<td th:text="${docente.afiliacionIgss}"></td>
+	
+							
+							<td class="text-center"><a class="btn btn-outline-info btn-xs"
+								th:href="@{/editar-docente/} + ${docente.idDocente}">EDITAR</a></td>
+							<td class="text-center"><a class="btn btn-outline-danger btn-xs"
+								th:href="@{/eliminar-docente/} + ${docente.idDocente}"
+								onclick="return confirm('Desea eliminar el Docente?');">ELIMINAR</a></td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+																						
+				</div>
+				</div>
+																						
+				</div>
+					
+	</div>
+			</div>
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

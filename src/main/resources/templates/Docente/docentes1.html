@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class="container mt-4 row d-flex justify-content-center">
+	
+	
+		<div class="col-sm-6 ">
+
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<h4 class="card-tittle">
+				<a th:href="@{/nuevo-docente}" class="btn btn-outline-primary btn-xs">AGREGAR DOCENTE</a>
+
+
+				</h4>
+				<div class="row d-flex justify-content-center">
+				<table class="table table-striped" th:if="${!docentes.isEmpty()}">
+					<thead class="bg-dark text-white text-center">
+						<tr>
+							<td>ID</td>
+							<td>DPI</td>
+							<td>NOMBRE</td>
+							<td>APELLIDO</td>
+							<td>APELLIDO CASADA</td>
+							<td>FECHA NACIMIENTO</td>
+							<td>DIRECCION</td>
+							<td>ESTADO CIVIL</td>
+							<td>GENERO</td>
+							<td>TELEFONO</td>
+							<td>NIT</td>
+							<td>EMAIL</td>
+							<td>AFILIACION IGSS</td>																							
+							<td>EDITAR</td>
+							<td>ELIMINAR</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="docente: ${docentes}" th:style="${docente.nombresDocente.isEmpty()} ? 'background-color: red'">
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/detalle-docente/} + ${docente.idDocente}" th:text="${docente.idDocente}"></a></td> 											
+							<td th:text="${docente.dpiDocente}"></td>
+							<td th:text="${docente.nombresDocente}"></td>
+							<td th:text="${docente.apellidosDocente}"></td>
+							<td th:text="${docente.apellidoCasadaDocente}"></td>
+							<td th:text="${docente.fechaNacimiento}"></td>
+							<td th:text="${docente.direccionDocente}"></td>
+							<td th:text="${docente.estadoCivil}"></td>														
+							<td th:text="${docente.genero.nombreGenero}"></td>					
+							<td th:text="${docente.telefonoDocente}"></td>
+							<td th:text="${docente.nitDocente}"></td>
+							<td th:text="${docente.email}"></td>
+							<td th:text="${docente.afiliacionIgss}"></td>
+	
+							
+							<td class="text-center"><a class="btn btn-outline-info btn-xs"
+								th:href="@{/editar-docente/} + ${docente.idDocente}">EDITAR</a></td>
+							<td class="text-center"><a class="btn btn-outline-danger btn-xs"
+								th:href="@{/eliminar-docente/} + ${docente.idDocente}"
+								onclick="return confirm('Desea eliminar el Docente?');">ELIMINAR</a></td>
+						</tr>
+					</tbody>
+				</table>
+				
+								<div class="container mt-4 row d-flex justify-content-center">
+				<nav th:replace="paginator-nav :: paginator"></nav>
+				</div>
+				</div>
+	
+
+			</div>
+		</div>
+
+		
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

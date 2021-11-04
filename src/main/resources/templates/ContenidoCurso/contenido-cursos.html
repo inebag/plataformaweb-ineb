@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<h4 class="card-tittle">
+				<a th:href="@{/nuevo-contenido-curso}" class="btn btn-outline-primary btn-xs">AGREGAR CONTENIDO CURSO</a>
+
+
+				</h4>
+				<table class="table table-striped " th:if="${!contenidoCursos.isEmpty()}">
+					<thead class="bg-dark text-white text-center">
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">CURSO</th>
+							<th scope="col">CARPETA</th>
+							<th scope="col">CONTENIDO</th>
+							<th scope="col">FECHA CREACION</th>																	
+							<th scope="col">EDITAR</th>
+							<th scope="col">ELIMINAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="contenidoCurso: ${contenidoCursos}">
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/detalle-contenido-curso/} + ${contenidoCurso.idContenidoCurso}" th:text="${contenidoCurso.idContenidoCurso}"></a></td> 											
+							<td th:text="${contenidoCurso.curso.nombreCurso}"></td>
+							<td th:text="${contenidoCurso.carpetaCurso.nombreCarpetaCurso}"></td>
+							<td th:text="${contenidoCurso.contenido}"></td>
+							<td th:text="${contenidoCurso.fechaCreacion}"></td>
+
+							<td class="text-center"><a class="btn btn-outline-warning btn-xs"
+								th:href="@{/editar-contenido-curso/} + ${contenidoCurso.idContenidoCurso}">EDITAR</a></td>
+							<td class="text-center"><a class="btn btn-outline-danger btn-xs"
+								th:href="@{/eliminar-contenido-curso/} + ${contenidoCurso.idContenidoCurso}"
+								onclick="return confirm('Desea eliminar la carpeta?');">ELIMINAR</a></td>
+						</tr>
+					</tbody>
+				</table>
+				
+								<div class="container mt-4 row d-flex justify-content-center">
+				<nav th:replace="paginator-nav :: paginator"></nav>
+				</div>
+	
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

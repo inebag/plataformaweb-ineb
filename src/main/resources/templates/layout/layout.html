@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+<meta charset="UTF-8" />
+<title th:text="${titulo}"></title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
+</head>
+<body>
+	<header th:fragment="header">
+		<nav class="navbar navbar-expand-lg"
+			style="background-color: #196981;">
+			<img class="" src="img/ineb3.png" th:src="@{/img/ineb3.png}"
+				width="80" height="80" alt="Ineb"> <a class="navbar-brand"
+				style="color: white; font-size: 35px" href="#">Instituto
+				Nacional de Educación Básica INEB</a>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav mr-auto">
+
+
+					<li class="nav-item active"><a class="nav-link text-light"
+						th:href="@{/inicio-ineb}">Inicio</a></li>
+
+
+
+					<li class="nav-item"><a class="nav-link text-light"
+						href="#about" th:href="@{/mis-cursos-estudiante}">Cursos</a></li>
+
+
+					<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a
+						class="nav-link text-light" href="#about"
+						th:href="@{/inicio-admin}">Administracion</a></li>
+
+				</ul>
+
+				<ul class="navbar-nav nav-bar-right">
+
+					
+						<li sec:authorize="isAuthenticated()" class="dropdown">
+						<a class="btn btn-outline-warning dropdown-toggle" href="#"
+							role="button" id="dropdownMenuLink" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"><span sec:authentication="name"></span></a>
+
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							<form id="logoutForm" th:action="@{/logout}" method="post">
+								<button class="dropdown-item" onclick="document.getElementById('logoutForm').submit();" type="submit">Cerrar Sesion</button>
+								
+							</form>
+							
+						</div>
+					</li>
+
+				</ul>
+
+			</div>
+
+		</nav>
+
+		<div class="alert alert-success" th:if="${success != null}"
+			th:text="${success}"></div>
+		<div class="alert alert-danger" th:if="${error != null}"
+			th:text="${error}"></div>
+		<div class="alert alert-warning" th:if="${warning != null}"
+			th:text="${warning}"></div>
+		<div class="alert alert-info" th:if="${info != null}"
+			th:text="${info}"></div>
+	</header>
+
+	<div class="container"></div>
+
+	<footer th:fragment="footer" class="container">
+		<hr />
+
+		<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+		<script th:src="@{/js/popper.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/jquery-ui.min.js}"></script>
+	</footer>
+</body>
+</html>

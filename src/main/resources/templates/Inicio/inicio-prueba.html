@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<style>
+body {
+	background: #e5e5e5;
+}
+</style>
+
+<style type="text/css">
+.transformacion1 {
+	text-transform: capitalize;
+}
+
+.transformacion2 {
+	text-transform: uppercase;
+}
+
+.transformacion3 {
+	text-transform: lowercase;
+}
+</style>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+
+		<div class="card bg-light">
+
+			<div class="card-header justify-content-center" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<a href="listar-estudiantes" class="link-primary">ESTUDIANTES</a><br />
+				<a href="listar-docentes" class="link-primary">DOCENTES</a><br /> <a
+					href="listar-cursos" class="link-primary">CURSOS</a><br /> <a
+					href="listar-asignaciones-grados-estudiantes" class="link-primary">ASIGNACION
+					DE GRADO ESTIDIANTE</a><br /> <a href="listar-grupos"
+					class="link-primary">ASIGNACION GRUPO DOCENTE</a><br />
+					
+				<div class="card" style="width: 18rem;">
+					<img src="img/estudiantes.png" class="card-img-top" alt="Estudiantes">
+					<div class="card-body">
+	
+						<a href="listar-estudiantes" class="btn btn-info">ESTUDIANTES</a>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+
+</body>
+</html>

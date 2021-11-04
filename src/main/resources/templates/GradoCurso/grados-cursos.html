@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+		
+	<div class="row d-flex justify-content-center">
+	<div class="container mt-4 row d-flex justify-content-center">
+	
+	<div class="col-sm-20 ">
+	
+		
+		<div class="card">
+		
+		<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+		
+				<h4 class="card-tittle">
+				<a th:href="@{/nuevo-grado-curso}" class="btn btn-outline-primary btn-xs">AGREGAR GRADO - CURSO</a>
+	
+
+
+				</h4>
+				
+				<div class="table-responsive">
+				<div class="row d-flex justify-content-center">
+				<table class="table table-striped " th:if="${!gradosCursos.isEmpty()}">
+					<thead class="bg-dark text-white">
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">GRADO</th>
+							<th scope="col">CURSO</th>																
+							<th scope="col">EDITAR</th>
+							<th scope="col">ELIMINAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="grdcurso: ${gradosCursos}" >																
+							<td th:text="${grdcurso.id}"></td>
+							<td th:text="${grdcurso.grado.ngrado+' '+grdcurso.grado.seccion.nseccion}"></td>
+							<td th:text="${grdcurso.curso.nombreCurso}"></td>
+							
+							<td class="text-center"><a class="btn btn-outline-warning btn-xs"
+								th:href="@{/editar-grado-curso/} + ${grdcurso.id}">EDITAR</a></td>
+							<td class="text-center"><a class="btn btn-outline-danger btn-xs"
+								th:href="@{/eliminar-grado-curso/} + ${grdcurso.id}"
+								onclick="return confirm('Desea eliminar el Grado Curso?');">ELIMINAR</a></td>
+						</tr>
+					</tbody>
+				</table>
+																						
+											<div class="container mt-4 row d-flex justify-content-center">
+				<nav th:replace="paginator-nav :: paginator"></nav>
+				</div>
+				</div>
+		</div>			
+	</div>
+			</div>
+		</div>
+		</div>
+	
+</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+	    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+    
+       <style type="text/css"> 
+   .transformacion1 { text-transform: capitalize;}   
+   .transformacion2 { text-transform: uppercase;}   
+   .transformacion3 { text-transform: lowercase;}   
+   </style> 
+<body>
+    <header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+	   
+	   <div class="card bg-light">
+	   
+	   <div class="card-header justify-content-center" th:text="${titulo}"></div>
+			<div class="card-body">
+			
+
+			   		<ul class="nav justify-content-center">
+  					<li class="nav-item">
+   					 <a class="nav-link active" aria-current="page" href="#">Material de Aprendizaje</a>
+  					</li>
+ 					 <li class="nav-item">
+   					 <a class="nav-link" href="#">Actividades</a>
+ 					 </li>
+  					<li class="nav-item">
+   					 <a class="nav-link" href="#">Calificaciones</a>
+  					</li>
+					</ul>
+			   		
+
+		</div>
+
+</div>
+		</div>
+		
+		
+		<div class="container py-4">
+	   
+	   <div class="card bg-light">
+	   <div class="card-header"><a>Material de aprendizaje</a></div>
+			<div class="card-body">
+				<div style="text-align: center">	
+				<a th:href="@{/listar-estudiantes}" class="btn btn-info">AGREGAR</a>
+			   	</div>
+			   	
+					<table class="table table-over" th:if="${not #lists.isEmpty(tDetallePedido)}">
+					<thead class="text-center">
+						<tr>
+							<th scope="col">MATERIAL</th>
+							<th scope="col">DESCRIPCION</th>
+							<th scope="col">EDITAR</th>
+							<th scope="col">ELIMINAR</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="mat : ${tDetallePedido}">
+							<td scope="row" th:text="${det.codigoProducto}"></td>
+							<td><img class="img-thumbnail rounded float-left"
+								th:src="${det.imagenProducto}"
+								width="100" height="100" th:alt="${det.imagenProducto}" /></td>
+							<td th:text="${det.descripcion}"></td>
+							<td th:text="'Q ' + ${det.precio}"></td>
+							<td><a class="btn btn-secondary btn-xs"
+								th:href="@{/cambiar-resta/} + ${det.codigoProducto}"
+								th:text="'-'"></a></td>
+							<td th:text="${det.cantidad}"></td>
+							<td><a class="btn btn-secondary btn-xs"
+								th:href="@{/cambiar-suma/} + ${det.codigoProducto}"
+								th:text="'+'"></a></td>
+							<td th:text="'Q ' + ${det.precio * det.cantidad}"></td>
+							<td><a class="btn btn-outline-danger btn-xs"
+								th:href="@{/eliminar-producto-carrito/} + ${det.codigoProducto}"
+								onclick="return confirm('Desea eliminar Producto');">Eliminar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			   		
+
+		</div>
+
+</div>
+		</div>
+		
+		
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+		
+	<div class="row d-flex justify-content-center">
+	<div class="container mt-4 row d-flex justify-content-center">
+	
+	<div class="col-sm-20 ">
+	
+		
+		<div class="card">
+		
+		<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+		
+				<h4 class="card-tittle">
+				<a th:href="@{/nuevo-grupo}" class="btn btn-outline-primary btn-xs">NUEVO GRUPO</a>
+				<a th:href="@{/listar-docentes}" class="btn btn-outline-primary btn-xs">DOCENTES</a>
+				<a class="nav-link" th:href="@{/report/grupos/download/(tipo=PDF)}" 
+					title="Exportar a PDF" target="_blank">	
+					<img class="img-responsive center-box" th:src="@{/img/pdf.png}" height="auto">						
+				    </a>	
+
+
+				</h4>
+				
+				<div class="table-responsive">
+				<div class="row d-flex justify-content-center">
+				<table class="table table-striped " th:if="${!grupos.isEmpty()}">
+					<thead class="bg-dark text-white">
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">DOCENTE</th>
+							<th scope="col">CURSO</th>
+							<th scope="col">GRADO</th>																
+							<th scope="col">EDITAR</th>
+							<th scope="col">ELIMINAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="grupo: ${grupos}" >																
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/detalle-grupo/} + ${grupo.idGrupo}" th:text="${grupo.idGrupo}"></a></td> 																
+							<td th:text="${grupo.docente.nombresDocente+' '+grupo.docente.apellidosDocente}"></td>
+							<td th:text="${grupo.curso.nombreCurso}"></td>
+							<td th:text="${grupo.grado.ngrado+' '+grupo.grado.seccion.nseccion}"></td>
+							
+							<td class="text-center"><a class="btn btn-outline-warning btn-xs"
+								th:href="@{/editar-grupo/} + ${grupo.idGrupo}">EDITAR</a></td>
+							<td class="text-center"><a class="btn btn-outline-danger btn-xs"
+								th:href="@{/eliminar-grupo/} + ${grupo.idGrupo}"
+								onclick="return confirm('Desea eliminar la Asignación de Docente?');">ELIMINAR</a></td>
+						</tr>
+					</tbody>
+				</table>
+																						
+											<div class="container mt-4 row d-flex justify-content-center">
+				<nav th:replace="paginator-nav :: paginator"></nav>
+				</div>
+				</div>
+		</div>			
+	</div>
+			</div>
+		</div>
+		</div>
+	
+</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

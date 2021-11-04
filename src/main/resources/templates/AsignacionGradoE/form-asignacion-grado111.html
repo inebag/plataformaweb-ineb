@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<meta charset="UTF-8">
+<title></title>
+
+<!--JQUERY-->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/select2.css">
+	<script src="js/jquery-3.1.1.min.js" th:src="@{/js/jquery-3.1.1.min.js}" ></script>
+	<script src="js/select2.js" th:src="@{/js/select2.js}" ></script>
+	
+
+
+
+</head>
+	<header th:replace="layout/layout :: header"></header>
+
+      <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>  
+<body>
+
+	
+	
+<div style="text-align: center;">
+	<h2>Este es mi buscador</h2>
+
+		<select id="mibuscador" style="width: 40%">
+			<option>Mexico</option>
+			<option>Belgica</option>
+			<option>Estado unidos</option>
+			<option>brasil</option>
+			<option>canada</option>
+		</select>
+</div>
+
+
+
+<div class="row d-flex justify-content-center">
+	<div class="container mt-4 row d-flex justify-content-center">
+	
+	<div class="col-sm-6 ">
+	
+				<form th:action="@{/nueva-asignacion-grado}" th:object="${asignacionGradoE}"
+					method="post" enctype="multipart/form-data">								
+					<div class="card">
+						<div class="card-header">
+						<h3
+							class="text-secundary"
+							th:text="${titulo}"></h3>
+						</div>
+					<div class="card-body">	
+
+
+						<div class="form-group" ><label>ESTUDIANTE</label>
+						
+							<select id="mibuscador" th:field="*{estudiante}" class="form-control form-control-sm col-md-15" >
+								<option th:each="estudiante:${estudiantes}"
+									th:value="${estudiante.idEstudiante}"
+									th:text="${estudiante.nombresEstudiante+' '+estudiante.apellidosEstudiante}"
+									class="form-control"								
+								/>
+							</select>
+						</div>
+						
+						<div class="search_select_box">
+							<select class="w-100" data-live-search="true"  th:field="*{estudiante}">
+							<option th:each="estudiante:${estudiantes}"
+									th:value="${estudiante.idEstudiante}"
+									th:text="${estudiante.nombresEstudiante+' '+estudiante.apellidosEstudiante}"/>
+							
+							</select>
+							
+						</div>					
+
+						<div class="search_select_box">
+						
+							<select class="w-100" data-live-search="true">
+							<option>Prueba1</option>
+							<option>Prueba2</option>
+							<option>Prueba3</option>
+							<option>Prueba4</option>
+							<option>Prueba5</option>
+							
+							</select>
+							
+						</div>
+						
+						
+<div style="text-align: center;">
+					<script type="text/javascript">
+	$(document).ready(function(){
+			$('#mibuscador').select2();
+	});
+</script>	
+	<h2>Este es mi buscador</h2>
+
+		<select id="mibuscador" style="width: 40%">
+			<option>Mexico</option>
+			<option>Belgica</option>
+			<option>Estado unidos</option>
+			<option>brasil</option>
+			<option>canada</option>
+		</select>
+</div>
+		
+						<div class="form-group"><label>GRADO</label>
+						<select th:field="*{grado}" class="form-control form-control-sm col-md-15" >
+								<option th:each="grado:${grados}"
+									th:value="${grado.idGrado}"
+									th:text="${grado.ngrado+' '+grado.seccion.nseccion}"
+									class="form-control"								
+								/>
+							</select>
+						</div>
+												
+					</div >
+					
+					<input type="hidden" th:field="*{idAsignacionGradoE}" />
+					
+					<div class="form-group text-center">
+					<div class="col-sm-6">
+					<input type="submit" value="GUARDAR" class="btn btn-info " />
+					
+					<a th:href="@{/listar-asignaciones-grados-estudiantes}" class="btn btn-warning">CANCELAR</a>
+					</div>
+					</div>
+
+
+				</div>
+				</form>
+
+			</div>
+		</div>
+	
+</div>
+	
+
+</body>
+</html>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+			$('#mibuscador').select2();
+	});
+</script>
+
+	

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+<body>
+    <header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+	   
+	   <div class="card bg-light">
+	   <div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+			
+
+			   		
+			   		<ul class="list-group">
+			   		<li class="list-group-item " th:text="${contenidoCurso.curso.nombreCurso}"></li>
+			   		<li class="list-group-item " th:text="${contenidoCurso.carpetaCurso.nombreCarpetaCurso}"></li> 
+			   		<li class="list-group-item " th:text="${contenidoCurso.contenido}"></li>
+			   		<li class="list-group-item " th:text="${contenidoCurso.fechaCreacion}"></li>
+			
+			   			
+			   		</ul>
+			   		   	<br/>
+			   	<a th:href="@{/listar-contenido-cursos}" class="btn btn-warning">REGRESAR</a>
+			 </div>
+		</div>
+
+		
+		
+		</div>
+		
+		
+		
+	<footer th:replace="layout/layout :: footer"></footer>
+	   
+		
+</body>
+</html>

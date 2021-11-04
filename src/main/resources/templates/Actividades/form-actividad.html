@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="row d-flex justify-content-center">
+	<div class="container mt-4 row d-flex justify-content-center">
+	
+	<div class="col-sm-6 ">
+	
+				<form th:action="@{/nueva-actividad}" th:object="${actividad}"
+					method="post" enctype="multipart/form-data">								
+					<div class="card">
+						<div class="card-header">
+						<h3
+							class="text-secundary"
+							th:text="${titulo}"></h3>
+						</div>
+					<div class="card-body">	
+						
+						<div class="form-group"><label>CURSO</label>
+						<select th:field="*{curso}" class="form-control form-control-sm col-md-15" >
+								<option th:each="curso:${cursos}"
+									th:value="${curso.idCurso}"
+									th:text="${curso.nombreCurso}"
+									class="form-control"								
+								/>
+							</select>
+						</div>
+						
+							<div class="form-group"><label>DESCRIPCION</label>
+
+									<input type="text" th:field="*{desc}" class="form-control"
+								 />
+
+						</div>
+												
+						<div class="form-group"><label>FECHA INICIO</label>
+							<input type="datetime-local" th:field="*{fechaInicio}" class="form-control"
+								required placeholder="dd-mm-aaaa" />
+						</div>
+						
+						<div class="form-group"><label>FECHA FIN</label>
+							<input type="datetime-local" th:field="*{fechaFin}" class="form-control"
+								required placeholder="dd-mm-aaaa" />
+						</div>
+						
+						<div class="form-group"><label>BIMESTRE</label>
+						<select th:field="*{bimestre}" class="form-control form-control-sm col-md-15" >
+								<option th:each="bimestre:${bimestres}"
+									th:value="${bimestre.idBimestre}"
+									th:text="${bimestre.nombreBimestre}"
+									class="form-control"								
+								/>
+							</select>
+						</div>
+						
+					<div class="form-group"><label>CARPETA</label>
+						<select th:field="*{carpetaActividades}" class="form-control form-control-sm col-md-15" >
+								<option th:each="carpetaActividad:${carpetaActividades}"
+									th:value="${carpetaActividad.idCarpetaActividad}"
+									th:text="${carpetaActividad.nombreCarpetaActividad}"
+									class="form-control"								
+								/>
+							</select>
+						</div>
+						
+						
+						
+				
+																		
+					</div >
+					
+					<input type="hidden" th:field="*{idActividad}" />
+					
+					<div class="form-group text-center">
+					<div class="col-sm-6">
+					<input type="submit" value="GUARDAR" class="btn btn-info " />
+					
+					<a th:href="@{/listar-actividades}" class="btn btn-warning">CANCELAR</a>
+					</div>
+					</div>
+
+
+				</div>
+				</form>
+
+			</div>
+		</div>
+	
+</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

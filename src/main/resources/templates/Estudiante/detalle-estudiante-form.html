@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+<body>
+    <header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+	   
+	   <div class="card bg-light">
+	   <div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<a class="nav-link" th:href="@{/report/detalle-estudiante/download/ + '${estudiante.idEstudiante}'(tipo=PDF)}" 
+					title="Exportar a PDF" target="_blank">
+					<img class="img-responsive center-box" th:src="@{/img/pdf.png}" height="auto">						
+				    </a>	
+			
+
+			   		
+			   		<ul class="list-group">
+			   		
+			   		<li class="list-group-item active" th:text="'NOMBRE: '+${estudiante.nombresEstudiante}">NOMBRE:</li>
+			        <li class="list-group-item" th:text="'APELLIDO '+${estudiante.apellidosEstudiante}"></li>
+			   		<li class="list-group-item" th:text="'FECHA NACIMIENTO: '+${estudiante.fechaNacimiento}"></li>
+			   		<li class="list-group-item" th:text="'GENERO: '+${estudiante.genero.nombreGenero}"></li>
+			   		<li class="list-group-item" th:text="'TELEFONO: '+${estudiante.telefono}"></li>
+			   		<li class="list-group-item" th:text="'DIRECCION: '+${estudiante.direccion}"></li>
+			   		<li class="list-group-item" th:text="'TIPO ESTUDIANTE: '+${estudiante.tipoEstudiante.ntipoEstudiante}"></li>
+			   		<li class="list-group-item" th:text="'NOMBRE ENCARGADO: '+${estudiante.nombresEncargado}"></li>
+			   		<li class="list-group-item" th:text="'APELLIDO ENCARGADO: '+${estudiante.apellidosEncargado}"></li>
+			   		<li class="list-group-item" th:text="'DPI ENCARGADO: '+${estudiante.dpiEncargado}"></li>
+			   		<li class="list-group-item" th:text="'TELEFONO ENCARGADO: '+${estudiante.telefonoEncargado}"></li>
+			   			
+			   		</ul>
+			   		<br/>
+			   		<table class="table table-striped ">
+					<thead class="bg-dark text-white">
+						<tr>
+							
+							<th scope="col">ESTUDIANTE</th>
+							<th scope="col">GRADO</th>
+							<th scope="col">SECCION</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="estudiante: ${estudiantes}" >																	
+							<td th:text="${estudiante.nombresEstudiante}"></td>
+							<td th:text="${estudiante.apellidosEstudiante}"></td>
+							<td th:text="${estudiante.fechaNacimiento}"></td>
+						
+						</tr>
+					</tbody>
+				</table>
+			   		
+			   		
+			   	<br/>
+			   	<a th:href="@{/listar-estudiantes}" class="btn btn-warning">REGRESAR</a>
+			   		
+			 </div>
+		</div>
+
+		<a class="btn btn-danger btn-xs float-right" th:href="@{'/detalle-estudiante/' + ${estudiante.idEstudiante}(format=pdf)}">PDF</a>
+		
+		<a class="btn btn-success btn-xs float-right" th:href="@{'/detalle-estudiante/' + ${estudiante.idEstudiante}(format=xlsx)}">EXCEL</a>
+		
+		</div>
+		
+		
+		
+	<footer th:replace="layout/layout :: footer"></footer>
+	   
+		
+</body>
+</html>

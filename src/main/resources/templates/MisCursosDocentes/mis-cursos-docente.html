@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+	    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+    
+       <style type="text/css"> 
+   .transformacion1 { text-transform: capitalize;}   
+   .transformacion2 { text-transform: uppercase;}   
+   .transformacion3 { text-transform: lowercase;}   
+   </style> 
+<body>
+    <header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+	   
+	   <div class="card bg-light">
+	   <div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+			
+
+			   		
+			   		<ul class="list-group" th:if="${!cursos.isEmpty()}">
+			   	 	<!--
+			   		<li class="list-group-item transformacion2" href="@{/listar-cursos}" th:each="curso: ${cursos}"
+			   			th:text="${curso.nombreCurso}" >
+
+			   			</li>
+			   				-->
+				   			
+  <li class="list-group-item ">
+    <a class="transformacion nav-link active" aria-current="page"  href="@{/listar-cursos}"
+    th:href="listar-cursos" th:each="curso: ${cursos}"
+			   			th:text="${curso.nombreCurso}"></a>
+  </li>	 			
+			   			
+			   			
+			   			
+			   		</ul>
+			   		
+
+		</div>
+
+</div>
+		</div>
+		
+		
+</body>
+</html>

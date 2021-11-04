@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+<body >
+    <header th:replace="layout/layout :: header"></header>
+    <div class="row d-flex justify-content-center">
+    <div class="container mt-4 row d-flex justify-content-center">
+    
+	<div class="container py-4">
+	   
+	   <div class="card bg-light">
+	   <div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+			
+			
+
+
+			   		
+			   		<ul class="list-group">			   		
+			   		<li class="list-group-item active" th:text="${docente.dpiDocente}">DPI</li>
+			   		<li class="list-group-item" th:text="${docente.nombresDocente}"></li>
+			        <li class="list-group-item" th:text="${docente.apellidosDocente}"></li>
+			   		<li class="list-group-item" th:text="${docente.apellidoCasadaDocente}"></li>
+					<li class="list-group-item" th:text="${docente.fechaNacimiento}"></li>
+			        <li class="list-group-item" th:text="${docente.direccionDocente}"></li>
+			   		<li class="list-group-item" th:text="${docente.estadoCivil}"></li>
+			   		<li class="list-group-item" th:text="${docente.genero.nombreGenero}"></li>
+			   		<li class="list-group-item" th:text="${docente.telefonoDocente}"></li>
+			   		<li class="list-group-item" th:text="${docente.nitDocente}"></li>
+			   		<li class="list-group-item" th:text="${docente.email}"></li>
+			   		<li class="list-group-item" th:text="${docente.afiliacionIgss}"></li>
+						
+			   		</ul>
+			   		<br/>
+			   		<table class="table table-striped">	
+					<thead class="bg-dark text-white">
+						<tr>
+							
+
+							<th scope="col">DOCENTE</th>
+							<th scope="col">CURSOS</th>
+							<th scope="col">GRADO</th>
+							<th scope="col">SECCION</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr >																		
+							<td th:text="${docente.dpiDocente}"></td>
+							<td th:text="${docente.nombresDocente}"></td>
+							<td th:text="${docente.apellidosDocente}"></td>
+							<td th:text="${docente.apellidoCasadaDocente}"></td>
+						</tr>
+					</tbody>
+				</table>
+			   		
+			   		<br/>
+			   		 <a th:href="@{/listar-docentes}" class="btn btn-outline-primary btn-xs">REGRESAR</a>
+			   		
+			 </div>
+	</div>
+
+	</div>
+		
+		</div>
+			</div>
+	
+	<footer th:replace="layout/layout :: footer"></footer>
+		
+</body>
+</html>

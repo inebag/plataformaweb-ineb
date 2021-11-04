@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+    <style>
+      body{
+        background:#e5e5e5;
+      }
+    </style>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+		
+	<div class="row d-flex justify-content-center">
+	<div class="container mt-4 row d-flex justify-content-center">
+	
+	<div class="col-sm-20 ">
+	
+		
+		<div class="card">
+		
+		<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+		
+				<h4 class="card-tittle">
+				<a th:href="@{/nuevo-administrador}" class="btn btn-outline-primary btn-xs">AGREGAR ADMINISTRADOR</a>		
+					
+				<a th:href="@{/listar-asignaciones-usuarios-administradores}" class="btn btn-outline-primary btn-xs">ASIGNACION USUARIO</a>
+				
+				</h4>
+				
+				<div class="table-responsive">
+				<div class="row d-flex justify-content-center">
+				<table class="table table-striped " th:if="${!administradores.isEmpty()}">
+					<thead class="bg-dark text-white">
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">NOMBRE ADMINISTRADOR</th>
+							<th scope="col">APELLIDO ADMINISTRADOR</th>
+							<th scope="col">FECHA NACIMIENTO</th>						
+							<th scope="col">TELEFONO</th>
+							<th scope="col">DIRECCION</th>																						
+							<th scope="col">EDITAR</th>
+							<th scope="col">ELIMINAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="administrador: ${administradores}">
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/detalle-administrador/} + ${administrador.id}" th:text="${administrador.id}"></a></td> 											
+							<td th:text="${administrador.nombres}"></td>
+							<td th:text="${administrador.apellidos}"></td>
+							<td th:text="${administrador.fechaNac}"></td>
+							<td th:text="${administrador.telefono}"></td>					
+							<td th:text="${administrador.direccion}"></td>
+							
+							
+							<td class="text-center"><a class="btn btn-outline-warning btn-xs"
+								th:href="@{/editar-administrador/} + ${administrador.id}">EDITAR</a></td>
+							<td class="text-center"><a class="btn btn-outline-danger btn-xs"
+								th:href="@{/eliminar-administrador/} + ${administrador.id}"
+								onclick="return confirm('Desea eliminar el Administrador?');">ELIMINAR</a></td>
+						</tr>
+					</tbody>
+				</table>
+																						
+											<div class="container mt-4 row d-flex justify-content-center">
+				<nav th:replace="paginator-nav :: paginator"></nav>
+				</div>
+				</div>
+		</div>			
+	</div>
+			</div>
+		</div>
+		</div>
+	
+</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
